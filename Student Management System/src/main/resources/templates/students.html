@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Tenants</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+		crossorigin="anonymous">
+</head>
+
+<body>
+	
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Student Management System</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/all-student}">Student Management</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+	<div class="container">
+	<div class="row">
+		<h1> List Of Students</h1>
+	</div>
+	
+	<div class="row">
+		<div class="co-lg-3">
+			<a th:href  = "@{/student/new}" class="btn btn-primary btn-sm mb-3">Add Student</a>
+		</div>
+	 </div>
+	
+	<table class="table table-striped table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th>Student First Name</th>
+      <th>Student Last Name</th>
+      <th>Student Email</th>
+      <th>Action</th>
+    </tr> 
+  </thead>
+  <tbody>
+	  <tr th:each= "Student: ${students}">
+		  <td th:text="${Student.firstname}"></td>
+		  <td th:text="${Student.lastname}"></td>
+		  <td th:text="${Student.email}"></td>
+		  <td> <a th:href= "@{/student/edit/{id}(id= ${Student.id})}" class= "btn btn-primary">Update </a>
+		  <a th:href= "@{/student/{id}(id= ${Student.id})}" class= "btn btn-danger">Delete </a> </td>
+	  </tr>
+  </tbody>
+</table>
+	
+	</div>
+</body>
+
+</html>
